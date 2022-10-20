@@ -1,19 +1,25 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, flash
 
 app = Flask(__name__)
+app.secret_key = "T0to_na_p4s_d0rm1"
 
 @app.route("/", methods = ['GET'])
 def home():
 	return render_template('home.html')
 
+@app.route("/form/", methods=["POST", "GET"])
+def form():
+	if request.method == "POST":
+		tweet = request.form["tweet_input"]
+		flash(tweet, "tweet")
+		result = "toto"
+		flash(result, "result")
+	return render_template("form.html")
+
+"""
 @app.route("/documentation/", methods = ['GET'])
 def documentation():
 	return render_template('documentation.html')
-
-"""
-def erreur():
-	message = {"message" : "L'id fournit ne correspond à aucun livre"}
-	return jsonify(message)
 """
 
 
