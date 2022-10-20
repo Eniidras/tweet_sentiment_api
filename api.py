@@ -44,4 +44,4 @@ def api_lowering_post():
 	return jsonify(text.lower())
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=False)
