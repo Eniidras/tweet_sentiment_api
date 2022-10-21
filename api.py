@@ -16,11 +16,10 @@ def form():
 		flash(result, "result")
 	return render_template("form.html")
 
-"""
+
 @app.route("/documentation/", methods = ['GET'])
 def documentation():
 	return render_template('documentation.html')
-"""
 
 
 def no_body(message):
@@ -38,7 +37,7 @@ def api_lowering_post():
 
 	data = request.json
 	if "text" not in data.keys():
-		return no_body("La requête n'a pas de champs 'text'.")
+		return no_body("Le corps de la requête n'a pas de champs 'text'.")
 	
 	text = data["text"]
 	return jsonify(text.lower())
