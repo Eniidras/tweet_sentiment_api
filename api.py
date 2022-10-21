@@ -23,10 +23,10 @@ def documentation():
 """
 
 
-def no_body():
+def no_body(message):
 	message = {
-		"message" : "Pas de texte fourni",
-		"documentation" : "insérer lien"
+		"message" : message,
+		"documentation" : "https://tweet-sentiment-api-ociap7.herokuapp.com/documentation"
 	}
 	return jsonify(message), 400
 
@@ -34,11 +34,11 @@ def no_body():
 @app.route("/api/lowering/", methods = ["POST"])
 def api_lowering_post():
 	if not request.is_json:
-		return no_body()
+		return no_body("Pas de document json dans le corps de la requête.")
 
 	data = request.json
 	if "text" not in data.keys():
-		return no_body()
+		return no_body("La requête n'a pas de champs 'text'.")
 	
 	text = data["text"]
 	return jsonify(text.lower())
