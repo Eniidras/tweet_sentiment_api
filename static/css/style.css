@@ -1,23 +1,29 @@
-/*
+
 
 :root {
-	--color-1: #ecb085;
-	--color-2: #eed59c;
+	--color-1: #682631;
+	--color-2: #893438;
 	--color-3: #2e1600;
 	--color-4: #7c7672;
 	--color-5: #e2e2e2;
 }
 
-*/
-
-:root {
-	--color-1: #51ced5;
-	--color-2: #87eedb;
-	--color-3: #002226;
-	--color-4: #707979;
-	--color-5: #e2e2e2;
-}
-
 body {
 	background-color: var(--color-5);
+}
+
+p {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+	font-family: Arial, sans-serif;
+	font-variant: small-caps;
+	color: var(--color-1);
+}
+
+h3 {
+	font-family: Arial, sans-serif;
+	font-variant: small-caps;
+	color: var(--color-2);
 }
