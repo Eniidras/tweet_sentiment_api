@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request, flash
+import modele
 
 app = Flask(__name__)
 app.secret_key = "T0to_na_p4s_d0rm1"
@@ -42,5 +43,20 @@ def api_lowering_post():
 	text = data["text"]
 	return jsonify(text.lower())
 
+@app.route("/api/sentiment_detection/", methods = ["POST"])
+def api_sentiment_tweet():
+	if not request.is_json:
+		return no_body("Pas de document json dans le corps de la requête.")
+
+	data = request.json
+	if "text" not in data.keys():
+		return no_body("Le corps de la requête n'a pas de champs 'text'.")
+	
+	text = data["text"]
+	result = modele.sentiment_tweet(text)
+	return jsonify({"result": result})
+
 if __name__ == "__main__":
 	app.run(debug=False)
+
+
