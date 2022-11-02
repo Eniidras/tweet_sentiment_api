@@ -30,9 +30,8 @@ def norm_text(text):
     text = re.sub('\w*\d\w*', '', text)
     return text
 
-selected_words = load(saves+"selected_words.joblib")
-
 def remove_words(l):
+    selected_words = load(saves+"selected_words.joblib")
     l = [w for w in l if (w in selected_words)]
     l = [w for w in l if (len(w) > 1)]
     return l
@@ -42,15 +41,15 @@ def combine_text(list_of_text):
     combined_text = ' '.join(list_of_text)
     return combined_text
 
-nlp = spacy.load("en_core_web_sm")
 def preprocess_sentence(txt, combine=True):
-  txt = norm_text(txt)
-  tokens = nlp(txt)
-  tokens = [token.lemma_ for token in tokens if str(token) != ' ']
-  tokens = remove_words(tokens)
-  if combine:
-    return combine_text(tokens)
-  return tokens
+    nlp = spacy.load("en_core_web_sm")
+    txt = norm_text(txt)
+    tokens = nlp(txt)
+    tokens = [token.lemma_ for token in tokens if str(token) != ' ']
+    tokens = remove_words(tokens)
+    if combine:
+        return combine_text(tokens)
+    return tokens
 
 #########################
 # Analyse via le modele #
