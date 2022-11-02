@@ -2,6 +2,7 @@
 	--color-1: #682631;
 	--color-2: #893438;
 	--color-3: #e2e2e2;
+	--color-4: #B0B0AC;
 }
 
 body {
@@ -10,12 +11,16 @@ body {
 
 p {
 	font-family: Helvetica, Arial, sans-serif;
+	width: 80%;
+	text-align: justify;
+	text-indent: 30px;
 }
 
 h1 {
 	font-family: Arial, sans-serif;
 	font-variant: small-caps;
 	color: var(--color-1);
+	margin-left: 10px;
 }
 
 h3 {
@@ -23,14 +28,32 @@ h3 {
 	font-variant: small-caps;
 	font-size: 24px;
 	color: var(--color-2);
+	margin-left: 20px;
 }
 
 h5 {
 	font-family: Arial, sans-serif;
 	font-size: 20px;
 	color: black;
+	margin-left: 50px;
 }
 
 table {
-	font-family: Arial, sans-serif;	
+	font-family: Arial, sans-serif;
+	margin-left: 50px;
+}
+
+td.tweets {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+pre {
+	margin: 10px;
+	padding: 10px;
+	width: 800px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	background-color: var(--color-4);
 }

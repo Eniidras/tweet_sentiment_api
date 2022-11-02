@@ -14,10 +14,10 @@
     <p>Pour réaliser cette analyse, on va s'assister d'une base de données de 1.600.000 tweets déjà évalués comme positifs ou négatifs afin de réaliser de l'apprentissage supervisé pour notre modèle. Cette base de données étant conséquente nous n'en prendrons qu'une partie pour réaliser nos comparaisons dans un premier temps (5%), puis nous lancerons l'entraînement sur tous les tweets une fois que nous aurons décidé de notre modèle. Notons également que les tweets sont également répartis entre ceux évalués comme positifs et ceux évalués comme négatifs, ce qui nous simplifiera l'apprentissage et les comparaisons.</p>
 
     <h3>Traitement du texte</h3>
-    <p>Pour commencer, il va falloir "nettoyer le texte". En effet, afin d'améliorer les performances, on doit d'abord se débarrasser d'informations peu ou pas utiles pour notre modèle. Par exemple, les termes de notre phrase commençant par <code class="bash">'@'</code> concernent le tag d'une personne. Ils ne sont pas utile pour déterminer si un tweet est positif ou négatif. En revanche, on pourrait s'en servir pour cibler les tweets à sélectionner dans le cas d'une détection de bad buzz. Mais cela ne concerne pas notre partie du projet.</p>
+    <p>Pour commencer, il va falloir "nettoyer le texte". En effet, afin d'améliorer les performances, on doit d'abord se débarrasser d'informations peu ou pas utiles pour notre modèle. Par exemple, les termes de notre phrase commençant par <code>'@'</code> concernent le tag d'une personne. Ils ne sont pas utile pour déterminer si un tweet est positif ou négatif. En revanche, on pourrait s'en servir pour cibler les tweets à sélectionner dans le cas d'une détection de bad buzz. Mais cela ne concerne pas notre partie du projet.</p>
     <p>Comme autre traitements assez classiques, on va se débarasser de la ponctuation, des liens... Et enfin des mots trop rarement utilisés et des mots ne comportant qu'une seule lettre.</p>
-    <p>Une dernière étape de traitement consiste à lemmatiser le texte, c'est-à-dire transformer des mots dans une forme plus générale afin de faciliter la reconnaissance par notre modèle. L'idée est que des verbes seront traités de la même manière peu importe leurs conjugaisons, ou bien encore que des mots comme <code class="bash">'happier'</code> et <code class="bash">'happy'</code> soit reconnus de la même manière par le modèle.</p>
-    <p>Par exemple la phrase <code class="bash">'@someone_pseudo I can't believe it, I am happier than ever!'</code> sera finalement traitée comme <code class="bash">'can not believe it be happy than ever'</code></p>
+    <p>Une dernière étape de traitement consiste à lemmatiser le texte, c'est-à-dire transformer des mots dans une forme plus générale afin de faciliter la reconnaissance par notre modèle. L'idée est que des verbes seront traités de la même manière peu importe leurs conjugaisons, ou bien encore que des mots comme <code>'happier'</code> et <code>'happy'</code> soit reconnus de la même manière par le modèle.</p>
+    <p>Par exemple la phrase <code>'@someone_pseudo I can't believe it, I am happier than ever!'</code> sera finalement traitée comme <code>'can not believe it be happy than ever'</code></p>
 
     <h3>Modèle simple</h3>
     <p>Avant de se lancer sur différents modèles de deep learning, nous allons réaliser l'apprentissage à l'aide d'un modèle plus classique se basant sur un tf-idf (méthode de pondération permettant d'exploiter des textes sous forme d'un vecteur de nombres utilisable pour un modèle de machine learning, <a href="https://fr.wikipedia.org/wiki/TF-IDF" target="_blank">Wikipédia</a>). Puis exploitant une classification à vecteur de support, SVC, un modèle linéaire relativement efficace pour effectuer de la classification sur du texte. <a href="https://fr.wikipedia.org/wiki/Machine_%C3%A0_vecteurs_de_support" target="_blank">Wikipédia</a></p>
@@ -26,7 +26,7 @@
     <p>Et donc pour ce premier modèle, nous obtenons une précision de 76,10%.</p>
 
     <h3>RNN, Comparaison de différents nettoyages</h3>
-    <p>Nous allons désormais nous baser sur des réseaux de neurones récurrents (RNN). Ces derniers plus récents ont tendances à fournir de meilleurs résultats pour les tâches de classification de texte. Et pour commencer nos comparaisons, nous allons utiliser un modèle avec une couche LSTM unilatérale suivie d'une couche Dense. (plus d'infos sur les couche LSTM <a href="https://towardsdatascience.com/understanding-lstm-and-its-quick-implementation-in-keras-for-sentiment-analysis-af410fd85b47">ici</a></p>
+    <p>Nous allons désormais nous baser sur des réseaux de neurones récurrents (RNN). Ces derniers plus récents ont tendances à fournir de meilleurs résultats pour les tâches de classification de texte. Et pour commencer nos comparaisons, nous allons utiliser un modèle avec une couche LSTM unilatérale suivie d'une couche Dense. (plus d'infos sur les couche LSTM <a href="https://towardsdatascience.com/understanding-lstm-and-its-quick-implementation-in-keras-for-sentiment-analysis-af410fd85b47">ici</a>)</p>
     <p>On peut commencer par vérifier si notre manière de nettoyer le texte ne pourrait pas être améliorée. Pour cela nous allons comparer notre traitements à deux variantes, en utilisant un stemmer à la place d'un lemmatizer, et en supprimant les stop-words.</p>
 
     <h5>Résultats</h5>
@@ -86,7 +86,7 @@
     <p>Précisons également pour ajouter l'intérêt de la couche LSTM, La vitesse de convergence du modèle sans cette couche est sensiblement ralentie.</p>
 
     <h3>Glove Embedding</h3>
-    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche, comme le modèle Glove par exemple. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code class="bash">"Le roi mange"</code> et <code class="bash">"Le prince mange"</code> seraient reconnues comme étant proche simplifiant la classification pour notre modèle.</p>
+    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche, comme le modèle Glove par exemple. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code>"Le roi mange"</code> et <code>"Le prince mange"</code> seraient reconnues comme étant proche simplifiant la classification pour notre modèle.</p>
     <p>En utilisant cette méthode, malheureusement nous n'obtenons qu'une précision de 76,02%. Une explication possible serait que le modèle étant sensiblement plus lourd, le nombre de tweets utilisé pour notre comparaison n'est peut être pas suffisant, et ce modèle garde du potentiel pour être plus performant sur le dataset complet.</p>
 
     <h3>Modèle BERT</h3>
@@ -97,16 +97,16 @@
     <p>Il convient de regarder quelques résultats pour analyser nos comparaisons. Voici quelques tweets mal prédis par notre modèle :</p>
     <table>
         <tr>
-            <td><code class="bash">lacks inspiration</code></td>
-            <td><em>faussement prédit positif</em></td>
+            <td class="tweets"><code>lacks inspiration</code></td>
+            <td class="tweets"><em>faussement prédit positif</em></td>
         </tr>
         <tr>
-            <td><code class="bash">@Exxx tsk - I just hoose the Amazon reviewer who is the most sycophantic - <br>not enough gush, and its clearly not worth buying</code></td>
-            <td><em>faussement prédit négatif</em></td>
+            <td class="tweets"><code>@Exxx tsk - I just hoose the Amazon reviewer who is the most sycophantic - <br>not enough gush, and its clearly not worth buying</code></td>
+            <td class="tweets"><em>faussement prédit négatif</em></td>
         </tr>
         <tr>
-            <td><code class="bash">@funkypancake Ah, how I miss the English pub!</code></td>
-            <td><em>faussement prédit négatif</em></td>
+            <td class="tweets"><code>@funkypancake Ah, how I miss the English pub!</code></td>
+            <td class="tweets"><em>faussement prédit négatif</em></td>
         </tr>
     </table>
 
