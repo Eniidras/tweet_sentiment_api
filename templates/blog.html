@@ -86,12 +86,12 @@
     <p>Précisons également pour ajouter l'intérêt de la couche LSTM, La vitesse de convergence du modèle sans cette couche est sensiblement ralentie.</p>
 
     <h3>Glove Embedding</h3>
-    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche, comme le modèle Glove par exemple. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code>"Le roi mange"</code> et <code>"Le prince mange"</code> seraient reconnues comme étant proche simplifiant la classification pour notre modèle.</p>
-    <p>En utilisant cette méthode, malheureusement nous n'obtenons qu'une précision de 76,02%. Une explication possible serait que le modèle étant sensiblement plus lourd, le nombre de tweets utilisé pour notre comparaison n'est peut être pas suffisant, et ce modèle garde du potentiel pour être plus performant sur le dataset complet.</p>
+    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche, comme le modèle Glove par exemple. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code>"Le roi mange"</code> et <code>"Le prince mange"</code> seraient reconnues comme étant proches simplifiant la classification pour notre modèle.</p>
+    <p>En utilisant cette méthode, on arrive à augmenter la précision des résultats à 78,73%. Ce qui est prometteur puisque ce modèle a également un meilleur espoir d'amélioration en utilisant plus de données d'entraînement.</p>
 
     <h3>Modèle BERT</h3>
     <p>Enfin, pour terminer notre analyse, il convient de s'intéresser au modèle le plus performant à ce jour. Le modèle BERT. Il s'agit d'un modèle developpé par Google en 2018, et est très performants sur des tâches variées concernant le traitement de textes.</p>
-    <p>Grâce à ce modèle, nous arrivons à atteindre des performances de 80,56%, ce qui est notablemment supérieur aux modèles précédents.</p>
+    <p>Grâce à ce modèle, nous arrivons à atteindre des performances de 82,81%, ce qui est notablemment supérieur aux modèles précédents.</p>
 
     <h3>Analyse de nos résultats</h3>
     <p>Il convient de regarder quelques résultats pour analyser nos comparaisons. Voici quelques tweets mal prédis par notre modèle :</p>
