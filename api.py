@@ -22,6 +22,11 @@ def form():
 def documentation():
 	return render_template('documentation.html')
 
+@app.route("/blog/", methods = ['GET'])
+def blog():
+	return render_template('blog.html')
+
+
 def no_body(message):
 	message = {
 		"message" : message,
