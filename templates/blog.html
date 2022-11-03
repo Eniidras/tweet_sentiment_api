@@ -85,9 +85,13 @@
     <p>On observe qu'ajouter une couche LSTM n'est pas très intéressant ici, en plus d'alourdir le modèle, cela diminue légèrement les performances. On pourrait observer un phénomène similaire en ajoutant une couche Dense. Ensuite, la caractéristique unilatérale ou bilatérale ne change pas vraiment les résultats de manière significative, cela peut s'expliquer par le fait que les tweets sont des textes courts, limitant l'intérêt du caractère bilatéral.</p>
     <p>Précisons également pour ajouter l'intérêt de la couche LSTM, La vitesse de convergence du modèle sans cette couche est sensiblement ralentie.</p>
 
+    <h3>Word2Vec</h3>
+    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code>"Le roi mange"</code> et <code>"Le prince mange"</code> seraient reconnues comme étant proches simplifiant la classification pour notre modèle.</p>
+    <p>Pour commencer on pourrait utiliser un modèle de type Word2vec. Mais malheureusement, un tel modèle entraîné sur des tweets ne permet pas de renvoyer des résultats forcément pertinents. Le mot le plus proche de <code>'man</code> est ici <code>'awww'</code>... La précision résultant de ce modèle est de 76,54%</p>
+
     <h3>Glove Embedding</h3>
-    <p>Une autre manière d'améliorer ce modèle serait d'utiliser une méthode de plongement de mots comme première couche, comme le modèle Glove par exemple. Cela permettrait de <em>rapprocher</em> les mots similaires pour notre analyse afin que l'algorithme apprenne plus facilement. Par exemple <code>"Le roi mange"</code> et <code>"Le prince mange"</code> seraient reconnues comme étant proches simplifiant la classification pour notre modèle.</p>
-    <p>En utilisant cette méthode, on arrive à augmenter la précision des résultats à 78,73%. Ce qui est prometteur puisque ce modèle a également un meilleur espoir d'amélioration en utilisant plus de données d'entraînement.</p>
+    <p>Une manière de pallier ce problème serait d'utiliser un modèle pré-entraîné. Ici nous utiliserons le modèle Glove.</p>
+    <p>Ainsi, on arrive à augmenter la précision des résultats à 78,80%. Ce qui est d'autant plus prometteur que ces modèles a également de meilleurs espoirs d'améliorations en utilisant plus de données d'entraînement.</p>
 
     <h3>Modèle BERT</h3>
     <p>Enfin, pour terminer notre analyse, il convient de s'intéresser au modèle le plus performant à ce jour. Le modèle BERT. Il s'agit d'un modèle developpé par Google en 2018, et est très performants sur des tâches variées concernant le traitement de textes.</p>
